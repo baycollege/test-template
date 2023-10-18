@@ -1,7 +1,8 @@
 import logging
-from tomllib import load
+import os
 
 import logging_loki
+from dotenv import find_dotenv, load_dotenv
 
 from .email_functions.email import EmailUsers
 from .math_functions.basic_functions import add, div, mult, sub
@@ -16,26 +17,23 @@ class TestTemplate:
         #*     SETUP ENVIRONMENT VARIABLES     *#
         #***************************************#
 
-        with open("config.toml", "rb") as config:
-            data = load(config)
+        load_dotenv(find_dotenv("config.env"))
 
-        ADD_1 = data['ADD_1']
-        ADD_2 = data['ADD_2']
+        ADD_1 = int(os.environ.get('ADD_1'))
+        ADD_2 = int(os.environ.get('ADD_2'))
 
-        SUB_1 = data['SUB_1']
-        SUB_2 = data['SUB_2']
+        SUB_1 = int(os.environ.get('SUB_1'))
+        SUB_2 = int(os.environ.get('SUB_2'))
 
-        MULT_1 = data['MULT_1']
-        MULT_2 = data['MULT_2']
+        MULT_1 = int(os.environ.get('MULT_1'))
+        MULT_2 = int(os.environ.get('MULT_2'))
 
-        DIV_1 = data['DIV_1']
-        DIV_2 = data['DIV_2']
+        DIV_1 = int(os.environ.get('DIV_1'))
+        DIV_2 = int(os.environ.get('DIV_2'))
 
-        GRAFANA_URL = data['GRAFANA_URL']
-        GRAFANA_USERNAME = data['GRAFANA_USERNAME']
-        GRAFANA_PASSWORD = data['GRAFANA_PASSWORD']
-        GRAFANA_VERSION = data['GRAFANA_VERSION']
-        GRAFANA_TAGS = data['GRAFANA_TAGS']
+        GRAFANA_URL = os.environ.get('GRAFANA_URL')
+        GRAFANA_USERNAME = os.environ.get('GRAFANA_USERNAME')
+        GRAFANA_PASSWORD = os.environ.get('GRAFANA_PASSWORD')
 
         #***************************************#
         #*           SETUP LOGGING             *#
@@ -43,9 +41,9 @@ class TestTemplate:
 
         handler = logging_loki.LokiHandler(
             url=GRAFANA_URL,
-            tags=GRAFANA_TAGS,
+            tags={"application": "test_template"},
             auth=(GRAFANA_USERNAME, GRAFANA_PASSWORD),
-            version=GRAFANA_VERSION,
+            version="1",
         )
 
         logger = logging.getLogger("test-template-logger")
@@ -85,4 +83,4 @@ class TestTemplate:
         alert_email.create_message(alert_message)
         alert_email.send_email()
 
-        print(GRAFANA_TAGS)
+        print("Hello World!")

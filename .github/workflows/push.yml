@@ -3,16 +3,17 @@ name: Push
 on:
   push:
     tags:
-    - '*'
+      - "*"
 
 jobs:
   push:
     runs-on: ubuntu-latest
+    environment: Production
     steps:
-    - uses: actions/checkout@v1
-    - name: Set env
-      run: echo "RELEASE_VERSION=$(echo ${GITHUB_REF:10})" >> "$GITHUB_ENV"
-    - name: Log into Registry
-      run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-    - name: Push to GitHub Package Registry
-      run: make push VERSION=${{ env.RELEASE_VERSION }}
+      - uses: actions/checkout@v1
+      - name: Set env
+        run: echo "RELEASE_VERSION=$(echo ${GITHUB_REF:10})" >> "$GITHUB_ENV"
+      - name: Log into Registry
+        run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Push to GitHub Package Registry
+        run: make push VERSION=${{ env.RELEASE_VERSION }}
