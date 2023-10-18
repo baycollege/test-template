@@ -1,6 +1,6 @@
 from pytest import raises
 
-from .context import basic_functions, test_template
+from .context import basic_functions
 
 
 def test_add_positive():

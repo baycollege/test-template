@@ -41,7 +41,7 @@ def div(a: int, b: int) -> int:
     if b == 0:
         raise ZeroDivisionError("Can not divide by zero.")
 
-    return a/b
+    return a / b
 
 
 def sub(a: int, b: int) -> int:
@@ -54,4 +54,4 @@ def sub(a: int, b: int) -> int:
     Returns:
         int: The difference of the subtraction
     """
-    return a-b
+    return a - b
