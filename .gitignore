@@ -101,6 +101,7 @@ node_modules/
 package-lock.json
 
 config.env
+config.toml
 
 # certs
 *.srl
