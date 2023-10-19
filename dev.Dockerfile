@@ -1,8 +1,8 @@
 FROM python:3.11.5-bookworm AS builder
 RUN apt-get update && apt-get install -y --no-install-recommends --yes python3-venv gcc libpython3-dev && \
     python3 -m venv /venv && \
-    /venv/bin/pip install --upgrade pip
-
+    /venv/bin/pip install --upgrade pip \
+    apt-get install cron -y -qq
 FROM builder AS builder-venv
 
 COPY requirements.txt /requirements.txt
@@ -20,7 +20,9 @@ COPY --from=tester /app /app
 
 WORKDIR /app
 
-ENTRYPOINT ["/venv/bin/python3", "-m", "test_template"]
+RUN crontab crontab
+
+ENTRYPOINT ["crond", "-f"]
 USER 1001
 
 LABEL name={NAME}
