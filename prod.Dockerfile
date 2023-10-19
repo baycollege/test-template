@@ -20,7 +20,9 @@ COPY --from=tester /app /app
 
 WORKDIR /app
 
-ENTRYPOINT ["/venv/bin/python3", "-m", "test_template"]
+RUN crontab crontab
+
+ENTRYPOINT ["crond", "-f"]
 USER 1001
 
 LABEL name={NAME}
