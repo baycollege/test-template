@@ -20,7 +20,7 @@ COPY --from=tester /app /app
 
 WORKDIR /app
 
-RUN crontab /venv/crontab
+RUN crontab /app/crontab
 
 ENTRYPOINT ["crond", "-f"]
 USER 1001
