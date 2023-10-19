@@ -2,6 +2,7 @@ FROM python:3.11.5-bookworm AS builder
 RUN apt-get update && apt-get install -y --no-install-recommends --yes python3-venv gcc libpython3-dev && \
     python3 -m venv /venv && \
     /venv/bin/pip install --upgrade pip
+
 FROM builder AS builder-venv
 
 COPY requirements.txt /requirements.txt
