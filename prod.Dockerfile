@@ -20,6 +20,8 @@ COPY --from=tester /app /app
 
 WORKDIR /app
 
+RUN echo $(ls)
+
 RUN crontab crontab
 
 ENTRYPOINT ["crond", "-f"]
