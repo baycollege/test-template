@@ -2,7 +2,7 @@
 MODULE := test_template
 
 # Where to push the docker image.
-REGISTRY ?= ghcr.io/baycollege/python-project-test_template
+REGISTRY ?= ghcr.io/baycollege/test-template
 
 IMAGE := $(REGISTRY)/$(MODULE)
 
