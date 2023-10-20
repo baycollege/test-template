@@ -14,7 +14,7 @@ COPY . /app
 WORKDIR /app
 RUN /venv/bin/pytest
 
-FROM gcr.io/distroless/python3-debian11 AS runner
+FROM gcr.io/distroless/python3-debian12 AS runner
 COPY --from=tester /venv /venv
 COPY --from=tester /app /app
 
