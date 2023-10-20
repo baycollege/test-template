@@ -16,6 +16,8 @@ coverage==7.3.1
 crashtest==0.4.1
 customtkinter==5.0.3
 darkdetect==0.8.0
+datadog==0.47.0
+datadog-api-client==2.18.0
 dill==0.3.6
 distlib==0.3.6
 dulwich==0.21.5
