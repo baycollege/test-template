@@ -1,4 +1,3 @@
-import logging
 import os
 
 from dotenv import find_dotenv, load_dotenv
@@ -47,7 +46,7 @@ class TestTemplate:
             div_result = div(DIV_1, DIV_2)
         except ZeroDivisionError:
             div_result = 'NaN'
-            logger.error(f"Divide by zero error, cannot divide {DIV_1} by {DIV_2}")
+            logger.error("Divide by zero error, cannot divide %d by %d", DIV_1, DIV_2)
 
         alert_email = EmailUsers('jared.paquette@baycollege.edu', 'test.repo@baycollege.edu')
         alert_email.create_subject("Test Template Repo")
