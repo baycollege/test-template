@@ -30,21 +30,13 @@ logging.basicConfig(
     ]
 )
 
-# # Set up the logger for Uvicorn to use
-# logger = logging.getLogger("uvicorn")
-# logger.handlers = logging.getLogger().handlers
-# logger.info('Starting the app logging...')
-
 # Define a custom logging handler that sends logs to Datadog
 
 
 class DatadogHandler(logging.Handler):
     def emit(self, record):
-        # # Ignore debug messages
-        # if record.levelno == logging.DEBUG:
-        #     return
 
-        toJson = json.dumps(
+        to_Json = json.dumps(
             {
                 "python-logging": {
                     "py-env": os.getenv("DD_LOGGING_ENV"),
@@ -80,7 +72,7 @@ class DatadogHandler(logging.Handler):
                         ddsource="Python",
                         ddtags="env:{}".format(os.getenv("DD_LOGGING_ENV")),
                         hostname="{}".format(os.getenv("DD_HOSTNAME")),
-                        message=toJson,
+                        message=to_Json,
                         service="{}".format(os.getenv("DD_SERVICE")),
                         status=record.levelname.lower()
                     ),
@@ -94,8 +86,7 @@ class DatadogHandler(logging.Handler):
             print(f"Error sending log to Datadog: {e}")
 
 
-# Set up the logger for Uvicorn to use
+# Set up the logger for test-template to use
 logger = logging.getLogger("test-template")
-# logger.handlers = logging.getLogger().handlers
 logger.info('Starting the app logging...')
 logger.addHandler(DatadogHandler())
