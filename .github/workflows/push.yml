@@ -8,8 +8,8 @@ on:
 jobs:
   push:
     runs-on: ubuntu-latest
-    environment: Production
-      - ADD_1=1
+    env:
+      ADD_1: 1
     steps:
       - uses: actions/checkout@v1
       # - name: Set env
