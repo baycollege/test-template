@@ -17,7 +17,7 @@ class TestTemplate:
         # *************************************** #
 
         load_dotenv(find_dotenv("config.env"))
-        logger.debug(os.environ.get('ADD_1'))
+        logger.debug(os.getenv('ADD_1'))
         ADD_1 = int(os.environ.get('ADD_1'))
         ADD_2 = int(os.environ.get('ADD_2'))
 
