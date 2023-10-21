@@ -9,10 +9,11 @@ jobs:
   push:
     runs-on: ubuntu-latest
     environment: Production
+      - RELEASE_VERSION=$(echo ${GITHUB_REF:10})" >> "$GITHUB_ENV
     steps:
       - uses: actions/checkout@v1
-      - name: Set env
-        run: echo "RELEASE_VERSION=$(echo ${GITHUB_REF:10})" >> "$GITHUB_ENV"
+      # - name: Set env
+      #   run: echo "RELEASE_VERSION=$(echo ${GITHUB_REF:10})" >> "$GITHUB_ENV"
       - name: Log into Registry
         run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Push to GitHub Package Registry
