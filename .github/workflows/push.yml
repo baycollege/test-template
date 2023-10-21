@@ -13,9 +13,9 @@ jobs:
       # - ${{vars.RELEASE_VERSION}}=${GITHUB_REF:10}
     steps:
       - uses: actions/checkout@v1
-      - name: Set env
-        run: echo "${{vars.RELEASE_VERSION}}=$(echo ${GITHUB_REF:10})"
+      # - name: Set env
+      #   run: echo "${{vars.RELEASE_VERSION}}=$(echo ${GITHUB_REF:10})"
       - name: Log into Registry
         run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Push to GitHub Package Registry
-        run: make push VERSION=${{ vars.RELEASE_VERSION }}
+        run: echo "make push VERSION=$(echo ${GITHUB_REF:10})"
