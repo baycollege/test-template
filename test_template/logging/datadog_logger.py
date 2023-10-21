@@ -25,7 +25,7 @@ logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s [%(process)d] [%(levelname)s] %(message)s",
     handlers=[
-        logging.FileHandler(filename="./app.log", mode="w"),
+        logging.FileHandler(filename="app.log", mode="w"),
         logging.StreamHandler(sys.stdout)
     ]
 )

@@ -20,7 +20,7 @@ COPY --from=tester /app /app
 
 WORKDIR /app
 
-ENTRYPOINT ["sudo /venv/bin/python3", "-m", "test_template"]
+ENTRYPOINT ["/venv/bin/python3", "-m", "test_template"]
 USER 1001
 
 LABEL name={NAME}
