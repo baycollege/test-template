@@ -21,7 +21,6 @@ COPY --from=tester /app /app
 WORKDIR /app
 
 ENTRYPOINT ["/venv/bin/python3", "-m", "test_template"]
-USER 1001
 
 LABEL name={NAME}
 LABEL version={VERSION}
