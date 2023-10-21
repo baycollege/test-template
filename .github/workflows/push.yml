@@ -18,4 +18,4 @@ jobs:
       - name: Log into Registry
         run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Push to GitHub Package Registry
-        run: echo "make push VERSION=$(echo ${GITHUB_REF:10})"
+        run: make push VERSION=$(echo ${GITHUB_REF:10})
