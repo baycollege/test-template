@@ -8,13 +8,12 @@ on:
 jobs:
   push:
     runs-on: ubuntu-latest
-    environment:
-      Production
-      # - ${{vars.RELEASE_VERSION}}=${GITHUB_REF:10}
+    environment: Production
+      - ADD_1=${{vars.ADD_1}}
     steps:
       - uses: actions/checkout@v1
       # - name: Set env
-      #   run: echo "${{vars.RELEASE_VERSION}}=$(echo ${GITHUB_REF:10})"
+      #   run:
       - name: Log into Registry
         run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Push to GitHub Package Registry
