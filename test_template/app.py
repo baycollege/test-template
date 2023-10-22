@@ -1,6 +1,6 @@
 import os
 
-from dotenv import find_dotenv, load_dotenv
+from dotenv import load_dotenv
 
 from .email_functions.email import EmailUsers
 from .logging.datadog_logger import logger
