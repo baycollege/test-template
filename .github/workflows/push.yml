@@ -8,12 +8,13 @@ on:
 jobs:
   push:
     runs-on: ubuntu-latest
-    env:
-      ADD_1: 1
+    environment: Production
     steps:
       - uses: actions/checkout@v1
       # - name: Set env
       #   run:
+      - name: debug
+        run: echo ${{vars.ADD_1}}
       - name: Log into Registry
         run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Push to GitHub Package Registry
