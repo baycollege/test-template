@@ -16,7 +16,7 @@ class TestTemplate:
         # *     SETUP ENVIRONMENT VARIABLES     * #
         # *************************************** #
 
-        load_dotenv(find_dotenv("config.env"))
+        load_dotenv()
         logger.debug(os.environ.get('ADD_1'))
         ADD_1 = int(os.environ.get('ADD_1'))
         ADD_2 = int(os.environ.get('ADD_2'))
